@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, BadgePercent, Clock3, ShieldCheck, Truck } from "lucide-react";
-import heroImage from "@/assets/hero.jpg";
+import heroAsset from "@/assets/hero.jpg.asset.json";
+const heroImage = heroAsset.url;
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Button } from "@/components/ui/button";
