@@ -14,7 +14,16 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as MenuRouteImport } from './routes/menu'
 import { Route as OffersRouteImport } from './routes/offers'
+import { Route as RiderRouteImport } from './routes/rider'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminDealsRouteImport } from './routes/admin.deals'
+import { Route as AdminMenuRouteImport } from './routes/admin.menu'
+import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
+import { Route as AdminPartnersRouteImport } from './routes/admin.partners'
+import { Route as AdminReportsRouteImport } from './routes/admin.reports'
+import { Route as RiderIndexRouteImport } from './routes/rider.index'
+import { Route as RiderDeliveriesRouteImport } from './routes/rider.deliveries'
+import { Route as RiderEarningsRouteImport } from './routes/rider.earnings'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -41,10 +50,55 @@ const OffersRoute = OffersRouteImport.update({
   path: '/offers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RiderRoute = RiderRouteImport.update({
+  id: '/rider',
+  path: '/rider',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AdminRoute,
+} as any)
+const AdminDealsRoute = AdminDealsRouteImport.update({
+  id: '/deals',
+  path: '/deals',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminMenuRoute = AdminMenuRouteImport.update({
+  id: '/menu',
+  path: '/menu',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminOrdersRoute = AdminOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPartnersRoute = AdminPartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminReportsRoute = AdminReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AdminRoute,
+} as any)
+const RiderIndexRoute = RiderIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => RiderRoute,
+} as any)
+const RiderDeliveriesRoute = RiderDeliveriesRouteImport.update({
+  id: '/deliveries',
+  path: '/deliveries',
+  getParentRoute: () => RiderRoute,
+} as any)
+const RiderEarningsRoute = RiderEarningsRouteImport.update({
+  id: '/earnings',
+  path: '/earnings',
+  getParentRoute: () => RiderRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -53,14 +107,31 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/menu': typeof MenuRoute
   '/offers': typeof OffersRoute
+  '/rider': typeof RiderRouteWithChildren
+  '/admin/deals': typeof AdminDealsRoute
+  '/admin/menu': typeof AdminMenuRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/partners': typeof AdminPartnersRoute
+  '/admin/reports': typeof AdminReportsRoute
+  '/rider/deliveries': typeof RiderDeliveriesRoute
+  '/rider/earnings': typeof RiderEarningsRoute
   '/admin/': typeof AdminIndexRoute
+  '/rider/': typeof RiderIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/menu': typeof MenuRoute
   '/offers': typeof OffersRoute
+  '/admin/deals': typeof AdminDealsRoute
+  '/admin/menu': typeof AdminMenuRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/partners': typeof AdminPartnersRoute
+  '/admin/reports': typeof AdminReportsRoute
+  '/rider/deliveries': typeof RiderDeliveriesRoute
+  '/rider/earnings': typeof RiderEarningsRoute
   '/admin': typeof AdminIndexRoute
+  '/rider': typeof RiderIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -69,14 +140,67 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/menu': typeof MenuRoute
   '/offers': typeof OffersRoute
+  '/rider': typeof RiderRouteWithChildren
+  '/admin/deals': typeof AdminDealsRoute
+  '/admin/menu': typeof AdminMenuRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/partners': typeof AdminPartnersRoute
+  '/admin/reports': typeof AdminReportsRoute
+  '/rider/deliveries': typeof RiderDeliveriesRoute
+  '/rider/earnings': typeof RiderEarningsRoute
   '/admin/': typeof AdminIndexRoute
+  '/rider/': typeof RiderIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/auth' | '/menu' | '/offers' | '/admin/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/auth'
+    | '/menu'
+    | '/offers'
+    | '/rider'
+    | '/admin/deals'
+    | '/admin/menu'
+    | '/admin/orders'
+    | '/admin/partners'
+    | '/admin/reports'
+    | '/rider/deliveries'
+    | '/rider/earnings'
+    | '/admin/'
+    | '/rider/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/menu' | '/offers' | '/admin'
-  id: '__root__' | '/' | '/admin' | '/auth' | '/menu' | '/offers' | '/admin/'
+  to:
+    | '/'
+    | '/auth'
+    | '/menu'
+    | '/offers'
+    | '/admin/deals'
+    | '/admin/menu'
+    | '/admin/orders'
+    | '/admin/partners'
+    | '/admin/reports'
+    | '/rider/deliveries'
+    | '/rider/earnings'
+    | '/admin'
+    | '/rider'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/auth'
+    | '/menu'
+    | '/offers'
+    | '/rider'
+    | '/admin/deals'
+    | '/admin/menu'
+    | '/admin/orders'
+    | '/admin/partners'
+    | '/admin/reports'
+    | '/rider/deliveries'
+    | '/rider/earnings'
+    | '/admin/'
+    | '/rider/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -85,6 +209,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   MenuRoute: typeof MenuRoute
   OffersRoute: typeof OffersRoute
+  RiderRoute: typeof RiderRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -124,6 +249,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OffersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/rider': {
+      id: '/rider'
+      path: '/rider'
+      fullPath: '/rider'
+      preLoaderRoute: typeof RiderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/': {
       id: '/admin/'
       path: '/'
@@ -131,18 +263,98 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/deals': {
+      id: '/admin/deals'
+      path: '/deals'
+      fullPath: '/admin/deals'
+      preLoaderRoute: typeof AdminDealsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/menu': {
+      id: '/admin/menu'
+      path: '/menu'
+      fullPath: '/admin/menu'
+      preLoaderRoute: typeof AdminMenuRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/orders': {
+      id: '/admin/orders'
+      path: '/orders'
+      fullPath: '/admin/orders'
+      preLoaderRoute: typeof AdminOrdersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/partners': {
+      id: '/admin/partners'
+      path: '/partners'
+      fullPath: '/admin/partners'
+      preLoaderRoute: typeof AdminPartnersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/reports': {
+      id: '/admin/reports'
+      path: '/reports'
+      fullPath: '/admin/reports'
+      preLoaderRoute: typeof AdminReportsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/rider/': {
+      id: '/rider/'
+      path: '/'
+      fullPath: '/rider/'
+      preLoaderRoute: typeof RiderIndexRouteImport
+      parentRoute: typeof RiderRoute
+    }
+    '/rider/deliveries': {
+      id: '/rider/deliveries'
+      path: '/deliveries'
+      fullPath: '/rider/deliveries'
+      preLoaderRoute: typeof RiderDeliveriesRouteImport
+      parentRoute: typeof RiderRoute
+    }
+    '/rider/earnings': {
+      id: '/rider/earnings'
+      path: '/earnings'
+      fullPath: '/rider/earnings'
+      preLoaderRoute: typeof RiderEarningsRouteImport
+      parentRoute: typeof RiderRoute
+    }
   }
 }
 
 interface AdminRouteChildren {
+  AdminDealsRoute: typeof AdminDealsRoute
+  AdminMenuRoute: typeof AdminMenuRoute
+  AdminOrdersRoute: typeof AdminOrdersRoute
+  AdminPartnersRoute: typeof AdminPartnersRoute
+  AdminReportsRoute: typeof AdminReportsRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminDealsRoute: AdminDealsRoute,
+  AdminMenuRoute: AdminMenuRoute,
+  AdminOrdersRoute: AdminOrdersRoute,
+  AdminPartnersRoute: AdminPartnersRoute,
+  AdminReportsRoute: AdminReportsRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface RiderRouteChildren {
+  RiderDeliveriesRoute: typeof RiderDeliveriesRoute
+  RiderEarningsRoute: typeof RiderEarningsRoute
+  RiderIndexRoute: typeof RiderIndexRoute
+}
+
+const RiderRouteChildren: RiderRouteChildren = {
+  RiderDeliveriesRoute: RiderDeliveriesRoute,
+  RiderEarningsRoute: RiderEarningsRoute,
+  RiderIndexRoute: RiderIndexRoute,
+}
+
+const RiderRouteWithChildren = RiderRoute._addFileChildren(RiderRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -150,6 +362,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   MenuRoute: MenuRoute,
   OffersRoute: OffersRoute,
+  RiderRoute: RiderRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
