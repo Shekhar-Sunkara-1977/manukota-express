@@ -5,7 +5,7 @@ const logo = logoAsset.url;
 export function Logo({
   to = "/",
   size = 44,
-  showText = true,
+  showText = false,
   tone = "default",
 }: {
   to?: string;
@@ -18,10 +18,9 @@ export function Logo({
       <img
         src={logo}
         alt="Manukota Food Junction logo"
-        width={size}
         height={size}
-        className="shrink-0"
-        style={{ width: size, height: size }}
+        className="h-[var(--logo-height)] w-auto shrink-0 object-contain"
+        style={{ ["--logo-height" as string]: `${size}px` }}
       />
       {showText && (
         <span className="leading-tight">
